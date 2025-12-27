@@ -1,0 +1,47 @@
+{
+  "year": 2025,
+  "user": {
+    "name": "Patrick Mannion",
+    "github": "pmannion2"
+  },
+  "github": {
+    "totalCommits": 3086,
+    "longestStreak": 261,
+    "currentStreak": 0,
+    "prsOpened": 100,
+    "prsMerged": 82,
+    "reviewsGiven": 0,
+    "avgReviewTime": "-",
+    "reviewBadge": "Solo Shipper",
+    "topLanguages": [
+      { "name": "Python", "percent": 89, "color": "#3572A5" },
+      { "name": "JavaScript", "percent": 8, "color": "#f1e05a" },
+      { "name": "Java", "percent": 1, "color": "#b07219" },
+      { "name": "TypeScript", "percent": 1, "color": "#3178c6" },
+      { "name": "Shell", "percent": 1, "color": "#89e051" }
+    ],
+    "topRepos": [
+      "supOS-CE",
+      "ignition-rag-agent",
+      "warehouse-data-validator",
+      "ignition_tools",
+      "icc-ai-in-manufacturing-2025"
+    ]
+  },
+  "graphite": {
+    "prsCreated": 0,
+    "stacksLanded": 0,
+    "avgTimeToReview": "-",
+    "mergeVelocity": "-"
+  },
+  "fun": {
+    "mostProductiveDay": "Wednesday",
+    "favoriteCommitHour": "10 AM",
+    "badges": [
+      "Python Master",
+      "Consistency King",
+      "Merge Machine",
+      "Wednesday Warrior"
+    ]
+  }
+}

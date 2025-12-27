@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Wrapped 2025</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapped-container">
+        <!-- Progress Indicator -->
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="progress-dots"></div>
+
+        <!-- Slide 1: Hero -->
+        <section class="slide active" data-slide="0">
+            <div class="slide-content hero">
+                <div class="hero-badge">2025</div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">Developer</span>
+                    <span class="gradient-text">Wrapped</span>
+                </h1>
+                <p class="hero-subtitle">Your year in code, visualized</p>
+                <button class="cta-button" onclick="nextSlide()">
+                    See Your Stats
+                    <span class="arrow">→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Slide 2: GitHub Overview -->
+        <section class="slide" data-slide="1">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <span class="slide-icon">📊</span>
+                    <h2>GitHub Overview</h2>
+                </div>
+                <div class="glass-card large">
+                    <div class="stat-highlight">
+                        <span class="stat-number" data-stat="totalCommits">0</span>
+                        <span class="stat-label">Total Commits</span>
+                    </div>
+                </div>
+                <div class="stats-row">
+                    <div class="glass-card">
+                        <span class="stat-number" data-stat="prsOpened">0</span>
+                        <span class="stat-label">PRs Opened</span>
+                    </div>
+                    <div class="glass-card">
+                        <span class="stat-number" data-stat="prsMerged">0</span>
+                        <span class="stat-label">PRs Merged</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Streak Stats -->
+        <section class="slide" data-slide="2">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <span class="slide-icon">🔥</span>
+                    <h2>Your Streaks</h2>
+                </div>
+                <div class="glass-card large streak-card">
+                    <div class="streak-visual">
+                        <div class="streak-flame">🔥</div>
+                        <span class="stat-number" data-stat="longestStreak">0</span>
+                        <span class="stat-label">Day Longest Streak</span>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <span class="stat-number" data-stat="currentStreak">0</span>
+                    <span class="stat-label">Current Streak</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Code Review -->
+        <section class="slide" data-slide="3">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <span class="slide-icon">👀</span>
+                    <h2>Code Review</h2>
+                </div>
+                <div class="glass-card large">
+                    <div class="stat-highlight">
+                        <span class="stat-number" data-stat="reviewsGiven">0</span>
+                        <span class="stat-label">Reviews Given</span>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <span class="stat-value" data-stat="avgReviewTime">-</span>
+                    <span class="stat-label">Avg Review Turnaround</span>
+                </div>
+                <div class="badge-container">
+                    <div class="achievement-badge" data-stat="reviewBadge">
+                        <span class="badge-icon">🏆</span>
+                        <span class="badge-text">Thorough Reviewer</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Languages -->
+        <section class="slide" data-slide="4">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <span class="slide-icon">💻</span>
+                    <h2>Top Languages</h2>
+                </div>
+                <div class="languages-container" id="languagesContainer">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Top Repos -->
+        <section class="slide" data-slide="5">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <span class="slide-icon">📁</span>
+                    <h2>Most Active Repos</h2>
+                </div>
+                <div class="repos-container" id="reposContainer">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Graphite Stats -->
+        <section class="slide" data-slide="6">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <span class="slide-icon graphite-icon">◆</span>
+                    <h2>Graphite Stats</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="glass-card">
+                        <span class="stat-number" data-stat="graphitePrs">0</span>
+                        <span class="stat-label">PRs Created</span>
+                    </div>
+                    <div class="glass-card">
+                        <span class="stat-number" data-stat="stacksLanded">0</span>
+                        <span class="stat-label">Stacks Landed</span>
+                    </div>
+                    <div class="glass-card">
+                        <span class="stat-value" data-stat="avgTimeToReview">-</span>
+                        <span class="stat-label">Avg Time to Review</span>
+                    </div>
+                    <div class="glass-card">
+                        <span class="stat-value" data-stat="mergeVelocity">-</span>
+                        <span class="stat-label">Merge Velocity</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Fun Stats -->
+        <section class="slide" data-slide="7">
+            <div class="slide-content">
+                <div class="slide-header">
+                    <span class="slide-icon">✨</span>
+                    <h2>Fun Facts</h2>
+                </div>
+                <div class="fun-stats">
+                    <div class="glass-card fun-card">
+                        <span class="fun-emoji">📅</span>
+                        <span class="stat-label">Most Productive Day</span>
+                        <span class="stat-value highlight" data-stat="mostProductiveDay">-</span>
+                    </div>
+                    <div class="glass-card fun-card">
+                        <span class="fun-emoji">⏰</span>
+                        <span class="stat-label">Favorite Commit Time</span>
+                        <span class="stat-value highlight" data-stat="favoriteCommitHour">-</span>
+                    </div>
+                </div>
+                <div class="badges-grid" id="badgesContainer">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Summary -->
+        <section class="slide" data-slide="8">
+            <div class="slide-content summary">
+                <div class="slide-header">
+                    <h2>Your 2025 Summary</h2>
+                </div>
+                <div class="summary-card glass-card">
+                    <div class="summary-header">
+                        <span class="summary-name" data-stat="userName">Developer</span>
+                        <span class="summary-year">2025</span>
+                    </div>
+                    <div class="summary-stats">
+                        <div class="summary-stat">
+                            <span class="summary-number" data-stat="totalCommits">0</span>
+                            <span class="summary-label">commits</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="summary-number" data-stat="prsMerged">0</span>
+                            <span class="summary-label">PRs merged</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="summary-number" data-stat="reviewsGiven">0</span>
+                            <span class="summary-label">reviews</span>
+                        </div>
+                    </div>
+                    <div class="summary-badges" id="summaryBadges">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                <button class="cta-button restart-btn" onclick="restartWrapped()">
+                    Watch Again
+                    <span class="arrow">↺</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="nav-controls">
+            <button class="nav-btn prev" onclick="prevSlide()" aria-label="Previous">
+                <span>←</span>
+            </button>
+            <button class="nav-btn next" onclick="nextSlide()" aria-label="Next">
+                <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
