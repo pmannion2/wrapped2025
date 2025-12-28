@@ -967,7 +967,8 @@ body::before {
 /* Treemap */
 .treemap-container {
     width: 100%;
-    aspect-ratio: 16 / 10;
+    min-height: 350px;
+    max-height: 60vh;
     display: grid;
     gap: 3px;
     border-radius: 16px;
@@ -1084,7 +1085,8 @@ body::before {
 
 /* Treemap Slide */
 .treemap-slide {
-    max-width: 800px;
+    max-width: 900px;
+    padding: 20px !important;
 }
 
 /* Pareto Chart */
