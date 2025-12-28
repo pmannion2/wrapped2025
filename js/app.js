@@ -4,8 +4,66 @@ let currentSlide = 0;
 let totalSlides = 0;
 let data = null;
 
+// Matrix rain effect
+function initMatrix() {
+    const canvas = document.getElementById('matrixCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas size
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Characters - mix of code symbols and letters
+    const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789{}[]()<>/*-+=;:.,!?@#$%^&abcdefghijklmnopqrstuvwxyz';
+    const charArray = chars.split('');
+
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+
+    // Array to track y position of each column
+    const drops = Array(columns).fill(1);
+
+    function draw() {
+        // Semi-transparent black to create fade effect
+        ctx.fillStyle = 'rgba(15, 12, 41, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Purple/blue gradient text color
+        ctx.fillStyle = '#667eea';
+        ctx.font = `${fontSize}px monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+            // Random character
+            const char = charArray[Math.floor(Math.random() * charArray.length)];
+
+            // Draw character
+            ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+            // Reset drop randomly after reaching bottom
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+
+            // Move drop down
+            drops[i]++;
+        }
+    }
+
+    // Run animation at lower framerate for subtle effect
+    setInterval(draw, 50);
+}
+
 // Initialize the app
 async function init() {
+    // Start matrix background
+    initMatrix();
+
     try {
         const response = await fetch('data.json');
         data = await response.json();

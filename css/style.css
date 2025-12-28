@@ -1,5 +1,108 @@
 /* Developer Wrapped 2025 - Glassmorphism Theme */
 
+/* Matrix Canvas */
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+/* Profile Header */
+.profile-header {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 200;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.profile-link:hover {
+    transform: translateY(-2px);
+}
+
+.profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.profile-link:hover .profile-avatar {
+    border-color: rgba(102, 126, 234, 0.6);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profile-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.profile-handle {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.org-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.org-badge:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border-color: rgba(102, 126, 234, 0.4);
+}
+
+.org-icon {
+    color: var(--accent-glow);
+    font-weight: 700;
+}
+
+.org-name {
+    color: inherit;
+}
+
 :root {
     --bg-gradient-1: #0f0c29;
     --bg-gradient-2: #302b63;
@@ -757,12 +860,38 @@ body::before {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .profile-header {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        padding: 10px 14px;
+    }
+
+    .profile-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .profile-name {
+        font-size: 13px;
+    }
+
+    .profile-handle {
+        font-size: 11px;
+    }
+
+    .org-badge {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
     .gradient-text {
         font-size: 48px;
     }
 
     .slide-content {
         padding: 24px;
+        padding-top: 80px;
     }
 
     .glass-card {
@@ -796,6 +925,22 @@ body::before {
 }
 
 @media (max-width: 480px) {
+    .profile-header {
+        padding: 8px 12px;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .org-name {
+        display: none;
+    }
+
+    .org-badge {
+        padding: 6px 8px;
+    }
+
     .gradient-text {
         font-size: 36px;
     }
