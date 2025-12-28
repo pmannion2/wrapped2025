@@ -356,6 +356,9 @@ function populateData() {
     // Populate pareto chart
     populatePareto();
 
+    // Populate contribution graph
+    populateContributionGraph();
+
     // Populate badges
     populateBadges();
 }
@@ -411,6 +414,21 @@ function populatePareto() {
                 </div>
             </div>
         `;
+    }).join('');
+}
+
+// Populate contribution graph
+function populateContributionGraph() {
+    const container = document.getElementById('contributionGraph');
+    if (!container || !data.github?.contributionGraph) return;
+
+    const graphData = data.github.contributionGraph;
+    const maxCommits = Math.max(...graphData.map(w => w.total));
+
+    container.innerHTML = graphData.map(week => {
+        const height = maxCommits > 0 ? (week.total / maxCommits) * 100 : 0;
+        const minHeight = week.total > 0 ? Math.max(height, 5) : 2; // Minimum visible height
+        return `<div class="graph-bar" style="height: ${minHeight}%" data-tooltip="${week.week}: ${week.total} commits"></div>`;
     }).join('');
 }
 
