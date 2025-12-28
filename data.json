@@ -14,10 +14,11 @@
     "avgReviewTime": "-",
     "reviewBadge": "Team Player",
     "topLanguages": [
-      { "name": "TypeScript", "percent": 90, "color": "#3178c6" },
-      { "name": "PLpgSQL", "percent": 7, "color": "#336790" },
-      { "name": "HTML", "percent": 2, "color": "#e34c26" },
-      { "name": "JavaScript", "percent": 1, "color": "#f1e05a" }
+      { "name": "Python", "percent": 62, "color": "#3572A5" },
+      { "name": "TypeScript", "percent": 30, "color": "#3178c6" },
+      { "name": "JavaScript", "percent": 5, "color": "#f1e05a" },
+      { "name": "Kotlin", "percent": 2, "color": "#A97BFF" },
+      { "name": "PLpgSQL", "percent": 1, "color": "#336790" }
     ],
     "topRepos": [
       "whk-wms",
@@ -70,7 +71,7 @@
     "mostProductiveDay": "Wednesday",
     "favoriteCommitHour": "10 AM",
     "badges": [
-      "TypeScript Titan",
+      "Python Pro",
       "WMS Wizard",
       "PR Machine",
       "Code Reviewer"
