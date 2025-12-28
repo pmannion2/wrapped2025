@@ -253,8 +253,45 @@ body::before {
 }
 
 .slide-icon {
-    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: bounce 2s ease-in-out infinite;
+}
+
+.slide-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: url(#iconGradient);
+    color: #667eea;
+}
+
+.slide-icon.flame svg {
+    fill: url(#flameGradient);
+    stroke: none;
+}
+
+/* Icon utilities */
+.icon-sm {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-btn {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover .icon-btn {
+    transform: translateX(4px);
+}
+
+.restart-btn:hover .icon-btn {
+    transform: rotate(-360deg);
 }
 
 .slide-header h2 {
@@ -453,8 +490,14 @@ body::before {
 }
 
 .streak-flame {
-    font-size: 64px;
+    width: 64px;
+    height: 64px;
     animation: flicker 1s ease-in-out infinite alternate;
+}
+
+.streak-flame svg {
+    width: 100%;
+    height: 100%;
 }
 
 @keyframes flicker {
@@ -478,7 +521,17 @@ body::before {
 }
 
 .badge-icon {
-    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--success-color);
 }
 
 .badge-text {
@@ -599,15 +652,27 @@ body::before {
     padding: 24px;
 }
 
-.fun-emoji {
-    font-size: 40px;
+.fun-icon {
+    width: 40px;
+    height: 40px;
     margin-bottom: 8px;
+    color: #667eea;
+}
+
+.fun-icon svg {
+    width: 100%;
+    height: 100%;
 }
 
 /* Graphite Icon */
 .graphite-icon {
     color: var(--graphite-color);
     animation: none;
+}
+
+.graphite-icon svg {
+    fill: var(--graphite-color);
+    stroke: none;
 }
 
 /* Summary */
@@ -711,12 +776,16 @@ body::before {
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     color: var(--text-primary);
-    font-size: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.nav-btn svg {
+    width: 20px;
+    height: 20px;
 }
 
 .nav-btn:hover {
