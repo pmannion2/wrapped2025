@@ -419,8 +419,8 @@ function populateData() {
     // Populate languages
     populateLanguages();
 
-    // Populate pareto chart
-    populatePareto();
+    // Populate treemap
+    populateTreemap();
 
     // Populate contribution graph
     populateContributionGraph();
@@ -447,40 +447,89 @@ function populateLanguages() {
     `).join('');
 }
 
-// Populate pareto chart
-function populatePareto() {
-    const container = document.getElementById('paretoContainer');
+// Populate treemap
+function populateTreemap() {
+    const container = document.getElementById('treemapContainer');
     const repoCountEl = document.getElementById('repoCount');
+    const totalCommitEl = document.getElementById('totalCommitCount');
     if (!container || !data.github?.repoPareto) return;
 
     const pareto = data.github.repoPareto;
-    const maxCommits = pareto[0]?.commits || 1;
+    const totalCommits = pareto.reduce((sum, item) => sum + item.commits, 0);
 
-    if (repoCountEl) {
-        repoCountEl.textContent = pareto.length;
+    if (repoCountEl) repoCountEl.textContent = pareto.length;
+    if (totalCommitEl) totalCommitEl.textContent = totalCommits.toLocaleString();
+
+    // Take top repos for treemap (limit to avoid tiny boxes)
+    const topRepos = pareto.slice(0, 15);
+    const otherCommits = pareto.slice(15).reduce((sum, item) => sum + item.commits, 0);
+
+    if (otherCommits > 0) {
+        topRepos.push({ repo: 'Other/repos', commits: otherCommits });
     }
 
-    container.innerHTML = pareto.map((item, i) => {
+    // Simple squarified treemap layout
+    const items = topRepos.map(item => {
         const [org, repo] = item.repo.split('/');
-        const isOrg = org !== 'pmannion2';
-        const percent = (item.commits / maxCommits) * 100;
+        const isOrg = org !== 'pmannion2' && org !== 'Other';
+        const percent = (item.commits / totalCommits) * 100;
+        return {
+            repo,
+            org,
+            commits: item.commits,
+            percent,
+            isOrg,
+            area: item.commits
+        };
+    });
 
+    // Generate grid layout based on area proportions
+    const gridItems = generateTreemapGrid(items, totalCommits);
+
+    container.style.gridTemplateColumns = 'repeat(12, 1fr)';
+    container.style.gridTemplateRows = 'repeat(8, 1fr)';
+
+    container.innerHTML = gridItems.map(item => {
+        const sizeClass = item.percent < 2 ? 'tiny' : item.percent < 5 ? 'small' : '';
         return `
-            <div class="pareto-bar ${isOrg ? 'org' : 'personal'}">
-                <span class="pareto-rank">${i + 1}</span>
-                <div class="pareto-info">
-                    <div class="pareto-repo">${repo}</div>
-                    <div class="pareto-org">${org}</div>
-                </div>
-                <div class="pareto-visual">
-                    <div class="pareto-fill-container">
-                        <div class="pareto-fill" data-percent="${percent}"></div>
-                    </div>
-                    <span class="pareto-count">${item.commits}</span>
-                </div>
+            <div class="treemap-item ${item.isOrg ? 'org' : 'personal'} ${sizeClass}"
+                 style="grid-column: span ${item.colSpan}; grid-row: span ${item.rowSpan};">
+                <span class="treemap-repo">${item.repo}</span>
+                <span class="treemap-commits">${item.commits}</span>
+                <div class="treemap-tooltip">${item.org}/${item.repo}: ${item.commits} commits (${item.percent.toFixed(1)}%)</div>
             </div>
         `;
     }).join('');
+}
+
+// Generate treemap grid layout
+function generateTreemapGrid(items, total) {
+    // Sort by commits descending
+    items.sort((a, b) => b.commits - a.commits);
+
+    // Assign grid spans based on percentage
+    return items.map((item, i) => {
+        const pct = (item.commits / total) * 100;
+        let colSpan, rowSpan;
+
+        if (pct > 25) {
+            colSpan = 6; rowSpan = 4;
+        } else if (pct > 15) {
+            colSpan = 4; rowSpan = 4;
+        } else if (pct > 8) {
+            colSpan = 4; rowSpan = 3;
+        } else if (pct > 5) {
+            colSpan = 3; rowSpan = 2;
+        } else if (pct > 2) {
+            colSpan = 2; rowSpan = 2;
+        } else if (pct > 1) {
+            colSpan = 2; rowSpan = 1;
+        } else {
+            colSpan = 1; rowSpan = 1;
+        }
+
+        return { ...item, colSpan, rowSpan, percent: pct };
+    });
 }
 
 // Populate contribution graph
