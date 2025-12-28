@@ -103,6 +103,8 @@
     color: inherit;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+
 :root {
     --bg-gradient-1: #0f0c29;
     --bg-gradient-2: #302b63;
@@ -116,6 +118,7 @@
     --accent-glow: rgba(102, 126, 234, 0.5);
     --success-color: #10b981;
     --graphite-color: #f97316;
+    --terminal-font: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
 }
 
 * {
@@ -125,11 +128,58 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--terminal-font);
     background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
     min-height: 100vh;
     color: var(--text-primary);
     overflow: hidden;
+}
+
+/* Typewriter Effect */
+.typewriter-target {
+    display: inline;
+    min-height: 1.2em;
+}
+
+.typewriter-target.typing {
+    /* While typing */
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: var(--text-primary);
+    margin-left: 3px;
+    vertical-align: baseline;
+    animation: blink 0.8s step-end infinite;
+}
+
+.cursor.gradient {
+    background: #667eea;
+    height: 0.9em;
+}
+
+.gradient-text .cursor {
+    background: #667eea;
+}
+
+@keyframes blink {
+    0%, 45% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+/* Terminal-style slide headers */
+.slide-header h2 {
+    font-family: var(--terminal-font);
+    letter-spacing: -0.5px;
+}
+
+/* Terminal-style stat labels */
+.stat-label {
+    font-family: var(--terminal-font);
+    font-size: 12px;
+    letter-spacing: 0.5px;
 }
 
 /* Animated background */

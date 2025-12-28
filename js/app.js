@@ -3,6 +3,55 @@
 let currentSlide = 0;
 let totalSlides = 0;
 let data = null;
+let typingInProgress = false;
+
+// Typewriter effect
+function typewriter(element, text, speed = 50) {
+    return new Promise((resolve) => {
+        element.textContent = '';
+        element.classList.add('typing');
+
+        // Add cursor
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        if (element.classList.contains('gradient-text')) {
+            cursor.classList.add('gradient');
+        }
+        element.appendChild(cursor);
+
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                element.classList.add('typing-done');
+                element.classList.remove('typing');
+                // Remove cursor after typing done
+                setTimeout(() => {
+                    if (cursor.parentNode === element) {
+                        cursor.remove();
+                    }
+                }, 1500);
+                resolve();
+            }
+        }
+        type();
+    });
+}
+
+// Run typewriter on all targets in a slide sequentially
+async function runTypewriterSequence(slide) {
+    const targets = slide.querySelectorAll('.typewriter-target');
+    for (const target of targets) {
+        const text = target.dataset.text || target.textContent;
+        target.dataset.text = text; // Store original
+        const speed = target.classList.contains('gradient-text') ? 80 : 40;
+        await typewriter(target, text, speed);
+        await new Promise(r => setTimeout(r, 100)); // Small pause between elements
+    }
+}
 
 // Matrix rain effect
 function initMatrix() {
@@ -73,6 +122,12 @@ async function init() {
         setupKeyboardNavigation();
         populateData();
         updateProgress();
+
+        // Trigger typewriter on first slide
+        const firstSlide = document.querySelector('.slide.active');
+        if (firstSlide) {
+            animateSlideContent(firstSlide);
+        }
     } catch (error) {
         console.error('Failed to load data:', error);
         // Use default placeholder data if fetch fails
@@ -82,6 +137,12 @@ async function init() {
         setupKeyboardNavigation();
         populateData();
         updateProgress();
+
+        // Trigger typewriter on first slide
+        const firstSlide = document.querySelector('.slide.active');
+        if (firstSlide) {
+            animateSlideContent(firstSlide);
+        }
     }
 }
 
@@ -251,18 +312,23 @@ function updateNavButtons() {
 }
 
 // Animate slide content
-function animateSlideContent(slide) {
+async function animateSlideContent(slide) {
     slide.classList.add('animate-in');
 
-    // Animate numbers
-    const numbers = slide.querySelectorAll('.stat-number[data-stat]');
-    numbers.forEach(el => {
-        const stat = el.dataset.stat;
-        const value = getStatValue(stat);
-        if (typeof value === 'number') {
-            animateNumber(el, value);
-        }
-    });
+    // Run typewriter effect first
+    await runTypewriterSequence(slide);
+
+    // Then animate numbers (with delay for effect)
+    setTimeout(() => {
+        const numbers = slide.querySelectorAll('.stat-number[data-stat]');
+        numbers.forEach(el => {
+            const stat = el.dataset.stat;
+            const value = getStatValue(stat);
+            if (typeof value === 'number') {
+                animateNumber(el, value);
+            }
+        });
+    }, 200);
 
     // Animate language bars
     const languageFills = slide.querySelectorAll('.language-fill');
@@ -270,7 +336,7 @@ function animateSlideContent(slide) {
         const percent = fill.dataset.percent;
         setTimeout(() => {
             fill.style.width = `${percent}%`;
-        }, 300);
+        }, 500);
     });
 
     // Animate pareto bars
@@ -279,7 +345,7 @@ function animateSlideContent(slide) {
         const percent = fill.dataset.percent;
         setTimeout(() => {
             fill.style.width = `${percent}%`;
-        }, 100 + i * 50);
+        }, 300 + i * 50);
     });
 }
 
