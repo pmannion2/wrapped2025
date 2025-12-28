@@ -288,7 +288,7 @@ body::before {
     align-items: center;
     gap: 24px;
     padding: 40px;
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
     text-align: center;
 }
@@ -559,7 +559,8 @@ body::before {
 /* Contribution Graph */
 .contribution-graph {
     width: 100%;
-    padding: 16px 20px;
+    padding: 20px 24px;
+    flex-grow: 1;
 }
 
 .graph-label {
@@ -574,7 +575,7 @@ body::before {
 .graph-container {
     display: flex;
     gap: 2px;
-    height: 60px;
+    height: 120px;
     align-items: flex-end;
     margin-bottom: 12px;
 }
@@ -967,8 +968,8 @@ body::before {
 /* Treemap */
 .treemap-container {
     width: 100%;
-    min-height: 350px;
-    max-height: 60vh;
+    height: 55vh;
+    min-height: 300px;
     display: grid;
     gap: 3px;
     border-radius: 16px;
@@ -1099,9 +1100,15 @@ body::before {
     border: 1px solid rgba(16, 185, 129, 0.6);
 }
 
+/* Activity Slide with Graph */
+.slide[data-slide="2"] .slide-content {
+    max-width: 850px;
+}
+
 /* Treemap Slide */
 .treemap-slide {
-    max-width: 900px;
+    max-width: 95vw !important;
+    width: 900px;
     padding: 20px !important;
 }
 
