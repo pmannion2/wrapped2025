@@ -5,14 +5,14 @@
     "github": "pmannion2"
   },
   "github": {
-    "totalCommits": 2174,
+    "totalCommits": 2311,
     "longestStreak": 261,
     "currentStreak": 0,
-    "prsOpened": 100,
-    "prsMerged": 82,
-    "reviewsGiven": 0,
+    "prsOpened": 570,
+    "prsMerged": 435,
+    "reviewsGiven": 225,
     "avgReviewTime": "-",
-    "reviewBadge": "Solo Shipper",
+    "reviewBadge": "Team Player",
     "topLanguages": [
       { "name": "TypeScript", "percent": 90, "color": "#3178c6" },
       { "name": "PLpgSQL", "percent": 7, "color": "#336790" },
@@ -25,6 +25,39 @@
       "whk-distillery01-ignition-global",
       "whk-wms-android",
       "whk-wms-front-end"
+    ],
+    "repoPareto": [
+      { "repo": "WhiskeyHouse/whk-wms", "commits": 732 },
+      { "repo": "WhiskeyHouse/whk-mes", "commits": 466 },
+      { "repo": "WhiskeyHouse/whk-distillery01-ignition-global", "commits": 156 },
+      { "repo": "WhiskeyHouse/whk-wms-android", "commits": 148 },
+      { "repo": "WhiskeyHouse/whk-wms-front-end", "commits": 126 },
+      { "repo": "WhiskeyHouse/whk-erpi", "commits": 112 },
+      { "repo": "WhiskeyHouse/whk-b2b-customer-portal-backend", "commits": 80 },
+      { "repo": "pmannion2/supOS-CE", "commits": 75 },
+      { "repo": "WhiskeyHouse/whk-b2b-frontend", "commits": 65 },
+      { "repo": "WhiskeyHouse/printer-automation-backend", "commits": 49 },
+      { "repo": "WhiskeyHouse/whk-ns-suitecloud-development", "commits": 46 },
+      { "repo": "WhiskeyHouse/whk-script-library", "commits": 40 },
+      { "repo": "WhiskeyHouse/whk-environment-orchestration", "commits": 36 },
+      { "repo": "WhiskeyHouse/whk-ignition-scada", "commits": 29 },
+      { "repo": "pmannion2/ignition-rag-agent", "commits": 28 },
+      { "repo": "WhiskeyHouse/warehouse-scanning-validation", "commits": 16 },
+      { "repo": "pmannion2/warehouse-data-validator", "commits": 16 },
+      { "repo": "WhiskeyHouse/ignition-git-module", "commits": 11 },
+      { "repo": "WhiskeyHouse/whk-ignition-reporting", "commits": 8 },
+      { "repo": "pmannion2/dotfiles", "commits": 8 },
+      { "repo": "WhiskeyHouse/ignition-mcp", "commits": 7 },
+      { "repo": "WhiskeyHouse/canary_mcp", "commits": 7 },
+      { "repo": "pmannion2/traceability-analysis", "commits": 7 },
+      { "repo": "WhiskeyHouse/intellect-sample-data-etl", "commits": 6 },
+      { "repo": "pmannion2/haystack-rag", "commits": 6 },
+      { "repo": "WhiskeyHouse/.github", "commits": 5 },
+      { "repo": "WhiskeyHouse/whk-notification-pipeline-service", "commits": 3 },
+      { "repo": "WhiskeyHouse/whk-auth-gateway", "commits": 3 },
+      { "repo": "WhiskeyHouse/whk-asyncapi-types", "commits": 3 },
+      { "repo": "WhiskeyHouse/llama-index-rag-python-backend", "commits": 3 },
+      { "repo": "pmannion2/agentic-tools", "commits": 3 }
     ]
   },
   "graphite": {
@@ -39,8 +72,8 @@
     "badges": [
       "TypeScript Titan",
       "WMS Wizard",
-      "Commit Machine",
-      "Wednesday Warrior"
+      "PR Machine",
+      "Code Reviewer"
     ]
   }
 }

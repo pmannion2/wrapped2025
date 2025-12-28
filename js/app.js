@@ -214,6 +214,15 @@ function animateSlideContent(slide) {
             fill.style.width = `${percent}%`;
         }, 300);
     });
+
+    // Animate pareto bars
+    const paretoFills = slide.querySelectorAll('.pareto-fill');
+    paretoFills.forEach((fill, i) => {
+        const percent = fill.dataset.percent;
+        setTimeout(() => {
+            fill.style.width = `${percent}%`;
+        }, 100 + i * 50);
+    });
 }
 
 // Animate number counting
@@ -286,8 +295,8 @@ function populateData() {
     // Populate languages
     populateLanguages();
 
-    // Populate repos
-    populateRepos();
+    // Populate pareto chart
+    populatePareto();
 
     // Populate badges
     populateBadges();
@@ -311,17 +320,40 @@ function populateLanguages() {
     `).join('');
 }
 
-// Populate repos
-function populateRepos() {
-    const container = document.getElementById('reposContainer');
-    if (!container || !data.github?.topRepos) return;
+// Populate pareto chart
+function populatePareto() {
+    const container = document.getElementById('paretoContainer');
+    const repoCountEl = document.getElementById('repoCount');
+    if (!container || !data.github?.repoPareto) return;
 
-    container.innerHTML = data.github.topRepos.map((repo, i) => `
-        <div class="repo-card">
-            <span class="repo-rank">#${i + 1}</span>
-            <span class="repo-name">${repo}</span>
-        </div>
-    `).join('');
+    const pareto = data.github.repoPareto;
+    const maxCommits = pareto[0]?.commits || 1;
+
+    if (repoCountEl) {
+        repoCountEl.textContent = pareto.length;
+    }
+
+    container.innerHTML = pareto.map((item, i) => {
+        const [org, repo] = item.repo.split('/');
+        const isOrg = org !== 'pmannion2';
+        const percent = (item.commits / maxCommits) * 100;
+
+        return `
+            <div class="pareto-bar ${isOrg ? 'org' : 'personal'}">
+                <span class="pareto-rank">${i + 1}</span>
+                <div class="pareto-info">
+                    <div class="pareto-repo">${repo}</div>
+                    <div class="pareto-org">${org}</div>
+                </div>
+                <div class="pareto-visual">
+                    <div class="pareto-fill-container">
+                        <div class="pareto-fill" data-percent="${percent}"></div>
+                    </div>
+                    <span class="pareto-count">${item.commits}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
 }
 
 // Populate badges

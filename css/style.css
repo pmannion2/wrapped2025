@@ -627,6 +627,123 @@ body::before {
     transform: none;
 }
 
+/* Pareto Chart */
+.pareto-slide .slide-content {
+    max-width: 700px;
+}
+
+.slide-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.pareto-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.pareto-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.pareto-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+}
+
+.pareto-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.pareto-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: var(--glass-bg);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.pareto-bar:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.pareto-bar.org {
+    border-left: 3px solid var(--accent-glow);
+}
+
+.pareto-bar.personal {
+    border-left: 3px solid var(--success-color);
+}
+
+.pareto-rank {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    min-width: 24px;
+}
+
+.pareto-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.pareto-repo {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pareto-org {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.pareto-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pareto-fill-container {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.pareto-fill {
+    height: 100%;
+    background: var(--accent-gradient);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 1s ease-out;
+}
+
+.pareto-count {
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    min-width: 50px;
+    text-align: right;
+}
+
 /* Counter Animation */
 @keyframes countUp {
     from { opacity: 0; transform: translateY(20px); }
